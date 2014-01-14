@@ -1,3 +1,26 @@
-index.html.erb
+<h1>Sites</h1>
 
-this is sites/index.html.erb
+
+<!-- <form class="form-group">
+ --><form action="<%= new_site_path %>">
+    <input type="submit" value="New">
+</form>
+<br>
+
+<table class="table table-hover ">
+	<% @sites.each do |site|  %>
+	<tr class="site_<%=site.id%>">
+		<td><%= site.name %></td>
+		<td><a href="<%=site_path(site)%>">SHOW</a></td>
+	<!-- 	<td><a href="/sites/<%=site.id%>/edit">EDIT</a></td> -->
+		<td><a href="<%= edit_site_path(site) %>">EDIT</a></td>
+		<td>
+			<form action="<%=site_path(site)%>" method="post">
+			<input type="hidden" value="delete" name="_method">
+			<button class="delete btn-link">DELETE</button>
+		</form>
+		</td>
+	</tr>
+	<% end %>
+</table>
+<!-- </form> -->
