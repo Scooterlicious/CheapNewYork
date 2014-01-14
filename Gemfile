@@ -20,14 +20,13 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
+gem 'jquery-rails' #JavaScript stuff
+gem 'rspec-rails' #Testing
+gem 'devise' #Devise for user authentication
+gem 'json' #Need this for my db:seed--gets the data from a JSON data file and pops it into the database
+gem 'capybara' #Testing
 
-gem 'rspec-rails'
-gem 'devise'
 
-gem 'json'
-
-gem 'capybara' 
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

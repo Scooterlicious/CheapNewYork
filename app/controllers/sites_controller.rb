@@ -1,6 +1,10 @@
+require 'yelp_api' # in the lib folder
+
 class SitesController < ApplicationController
 	def index
-		@sites = Site.all
+		@sites = Site.all.take(30)
+		YelpApi.method1()
+#@sites = Site.all
 	end
 
 	def new
