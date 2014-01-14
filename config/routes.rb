@@ -1,6 +1,8 @@
 CheapNewYork::Application.routes.draw do
   devise_for :users
 
+resources :sites
+
   root :to => 'sites#index'
 
   # The priority is based upon order of creation:
