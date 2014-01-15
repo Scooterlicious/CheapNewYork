@@ -7,8 +7,8 @@ class SitesController < ApplicationController
 	#before_filter :authenticate_user!, except: [:index] 
 	
 	def index
-		@sites = Site.all.take(1)
-		# @sites |= YelpApi.searchZip(10045) 
+		@sites = Site.all.take(2)
+#		@sites |= YelpApi.searchZip(10010) 
 	end
 
 	def new
@@ -16,9 +16,8 @@ class SitesController < ApplicationController
 	end
 
 	def zipsearch
-		#@sites = Site.all.take(2)
-		#@sites |= YelpApi.searchZip(params[:zipsearch])
-		@sites = YelpApi.searchZip(params[:zipcode])
+		@sites = Site.all.take(2)
+		@sites |= YelpApi.searchZip(params[:zipcode])
 	end
 
 	def show

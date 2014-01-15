@@ -25,5 +25,6 @@
 <form action="<%= site_reviews_path %>" method="post">
 	<input type="text" name="rating" placeholder="Rating">
 	<input type="text" name="written_text" placeholder="What did you think?">
+	<%= token_tag :authenticity_token %>
 	<button id="submit">Create Review</button>
 </form>
