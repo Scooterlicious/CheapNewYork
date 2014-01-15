@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>CheapNewYork</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-  <script language="javascript" type="text/javascript">
-  $(document).ready(function()
-	{
-		$("#myTable").tablesorter();
-	}
-);
-
-  </script>
+	<title>CheapNewYork</title>
+	<%= stylesheet_link_tag    "application", :media => "all" %>
+	<%= javascript_include_tag "application" %>
+	<%= csrf_meta_tags %>
+	<script language="javascript" type="text/javascript">
+		$(document).ready(function(){$("#myTable").tablesorter();});
+	</script>
 </head>
+
 <body>
 
+<!-- This is where Devise alerts a user to their state.  It is here in the 
+application.html.erb so that it appears on EVERY page.  The p tags will appear everywhere and be empty UNTIL Devise has something to say, and then that information will be present in these tags -->
 <p class=”notice”><%= notice %></p>
 <p class=”alert”><%= alert %></p>
+
+<% if user_signed_in? %> 
+	<p>Welcome, <%= current_user.email %></p>
+	<%= link_to "logout", destroy_user_session_path, method: :delete %>
+<% else %>
+	<%= link_to "sign-in", new_user_session_path %>
+	<%= link_to "sign-up", new_user_registration_path %>
+<% end %>
 
 
 <%= yield %>

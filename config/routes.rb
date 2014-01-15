@@ -1,7 +1,14 @@
 CheapNewYork::Application.routes.draw do
   devise_for :users
 
-resources :sites
+  resources :sites
+
+#  '/sites/zipsearch/:id' => 'sites#zipsearch'
+
+#sites ":id",  :controller => "auctions", :action => "show"
+match "/sites/zipsearch/:id" => "sites", :action => "zipsearch"
+
+match "/sites/zipsearch2/:id" => "sites#zipsearch2"
 
   root :to => 'sites#index'
 

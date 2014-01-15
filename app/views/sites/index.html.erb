@@ -1,8 +1,17 @@
 <h1>Sites</h1>
 
 <form action="<%= new_site_path %>">
+	Zipcode: <input type="text" name="zipcode">
+	<input type="submit" value="Search Zipcode">
+</form>
+<form action="<%= new_site_path %>">
 	<input type="submit" value="New">
 </form>
+<form action="<%= destroy_user_session_path %>" method="POST">
+	<input type="hidden" name="_method" value="DELETE">
+	<input type="submit" value="Log out">
+</form>
+
 <br>
 <table id="myTable" class="tablesorter table-hover table">
 	<thead>
@@ -10,20 +19,31 @@
 			<th class="col-sm-1">Cost</th>
 			<th class="col-sm-2">Name</th>
 			<th class="col-sm-2">Address</th>
-			<th class="col-sm-1">City</th>
-			<th class="col-sm-1">Zip</th>
 			<th class="col-sm-1">Rating</th>
+			<th class="col-sm-3">Reviews</th>
 		</tr>
 	</thead>
 	<tbody>
 		<% @sites.each do |site|  %>
-			<tr class="site_<%=site.id%>">
+			<!-- <tr class="site_< % = site.id % >"> -->
+			<tr class="site_BLANKSTUFF_FIXME_TODO">
 				<td><%= site.cost %></td>
 				<td><%= site.name %></td>
 				<td><%= site.address %></td>
-				<td><%= site.city %></td>
-				<td><%= site.zipcode %></td>
-				<td><a href="<%=site_path(site)%>">FIXME</a></td>
+				<!-- <td><%= site.city %></td> -->
+				<!-- <td>< % = site.zipcode % ></td> -->
+				<td>FIX#</td>
+				<td>
+					<!-- <a href="<%=site_path(site)%>">FIXME</a> -->
+<% if user_signed_in? %> 
+<form action="/reviews/WriteAGroovyReview">
+	<input type="submit" value="Write Review">
+</form>
+<% end %>
+
+
+					(<%= site.reviews %>)
+				</td>
 			</tr>
 		<% end %>
 	</tbody>

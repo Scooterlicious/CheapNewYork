@@ -25,8 +25,7 @@ gem 'rspec-rails' #Testing
 gem 'devise' #Devise for user authentication
 gem 'json' #Need this for my db:seed--gets the data from a JSON data file and pops it into the database
 gem 'capybara' #Testing
-
-
+gem 'yelpster'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
