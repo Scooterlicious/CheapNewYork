@@ -1,20 +1,13 @@
 CheapNewYork::Application.routes.draw do
   devise_for :users
 
-  resources :sites
-
-#  '/sites/zipsearch/:id' => 'sites#zipsearch'
-
-#sites ":id",  :controller => "auctions", :action => "show"
-match "/sites/zipsearch/:id" => "sites", :action => "zipsearch"
-
-match "/sites/zipsearch2/:id" => "sites#zipsearch2"
+  resources :sites do
+    resources :reviews
+  end
 
   root :to => 'sites#index'
 
-  
-
-  # The priority is based upon order of creation:
+    # The priority is based upon order of creation:
   # first created -> highest priority.
 
   # Sample of regular route:

@@ -1,0 +1,9 @@
+new.index.erb
+
+<h1>Create a new review</h1>
+
+<form action="<%= site_reviews_path %>" method="post">
+	<input type="text" name="rating" placeholder="Rating">
+	<input type="text" name="written_text" placeholder="...This place was...">
+	<button id="submit">Create Review</button>
+</form>
