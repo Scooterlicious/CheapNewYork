@@ -15,6 +15,15 @@ Try running rake routes for more information on available routes." -->
 	<input type="submit" value="New">
 </form>
 
+Controller could generate the URL...
+sites/zipsearch/somenumberasastring...  could be added to applicationcontroller as a method...  needs to be a method that returns the path
+
+<!-- <form action="<%= sites_zipsearch_path %>" method="POST"> -->
+<form action="/sites/zipsearch" method="POST">
+	<input type="text" name="zipcode">
+	<input type="submit" value="Zipcode Search">
+</form>
+
 <form action="<%= destroy_user_session_path %>" method="POST">
 	<input type="hidden" name="_method" value="DELETE">
 	<input type="submit" value="Log out">

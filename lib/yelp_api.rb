@@ -30,14 +30,19 @@ class YelpApi
 			 include Yelp::V1::Review::Request
 			 # perform an address/location-based search for cream puffs nearby
 
+#inZip = '10010'
+if inZip == nil
+	inZip = 10000
+end
 			 request = Location.new(
 	             # :address => '650 Mission St',
 	             :city => 'New York',
 	             :state => 'NY',
 	             :radius => 1,
 	             :zipcode => inZip,
+	             #:zipcode => 10031,
 	             :term => 'restaurant',
-	             :business_count => 2)
+	             :business_count => rand(1..4))
 
 			site_array = []
 
@@ -45,7 +50,7 @@ class YelpApi
 			business_array = response["businesses"]
 			business_array.each do |business|
 				cost = "$"
-				name = business["name"]
+				name = business["name"] + inZip
 				address = business["address1"]
 				city = business["city"]
 				zip = business["zip"]

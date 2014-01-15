@@ -7,10 +7,8 @@ class SitesController < ApplicationController
 	#before_filter :authenticate_user!, except: [:index] 
 	
 	def index
-		@sites = Site.all.take(3)
-		@sites |= YelpApi.searchZip(86004)
-#@sites = Site.all
-"THIS IS THE END"
+		@sites = Site.all.take(1)
+		# @sites |= YelpApi.searchZip(10045) 
 	end
 
 	def new
@@ -18,37 +16,12 @@ class SitesController < ApplicationController
 	end
 
 	def zipsearch
-
-		@sites = Site.all.take(30)
-		@sites |= YelpApi.searchZip(params[:id])
+		#@sites = Site.all.take(2)
+		#@sites |= YelpApi.searchZip(params[:zipsearch])
+		@sites = YelpApi.searchZip(params[:zipcode])
 	end
-
-	# def create
-	# 	Site.create({
-	# 		name: params[:band][:name]
-	# 	})
-	# 	redirect_to sites_path
-	# end
-
 
 	def show
 		@site = Site.find(params[:id])
 	end	
-
-	# def destroy 
-	# 	Site.find(params[:id]).destroy
-	# 	redirect_to sites_path
-	# end	
-
-	# def edit
-	# 	@band = Site.find(params[:id])
-	# end
-
-	# def update
-	# 	@band = Site.find(params[:id])
-	# 	@band.name = params[:band][:name]
-	# 	@band.save
-	# 	redirect_to band_path(params[:id])
-	# end
-
 end

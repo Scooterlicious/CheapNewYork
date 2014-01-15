@@ -1,9 +1,29 @@
-new.index.erb
-
 <h1>Create a new review</h1>
+
+<table id="myTable" class="table">
+	<thead>
+		<tr>
+			<th class="col-sm-1">Cost</th>
+			<th class="col-sm-2">Name</th>
+			<th class="col-sm-2">Address</th>
+		</tr>
+	</thead>
+	<tbody>
+			<tr class="site_BLANKSTUFF_FIXME_TODO">
+				<td><%= @site.cost %></td>
+				<td><%= @site.name %></td>
+				<td><%= @site.address %></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+	</tbody>
+</table>
 
 <form action="<%= site_reviews_path %>" method="post">
 	<input type="text" name="rating" placeholder="Rating">
-	<input type="text" name="written_text" placeholder="...This place was...">
+	<input type="text" name="written_text" placeholder="What did you think?">
 	<button id="submit">Create Review</button>
 </form>

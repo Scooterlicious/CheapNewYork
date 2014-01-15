@@ -5,6 +5,8 @@ CheapNewYork::Application.routes.draw do
     resources :reviews
   end
 
+  post '/sites/zipsearch', to: 'sites#zipsearch', as: 'sites_zipsearch'
+
   root :to => 'sites#index'
 
     # The priority is based upon order of creation:

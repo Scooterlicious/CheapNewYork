@@ -1,16 +1,36 @@
-<h1>zipsearch.html.erb</h1>
 
-<form action="<%= zipsearch_path %>">
-	Zipcode: <input type="text" name="zipcode">
+<h1>Sites</h1>
+params[:zipcode] resolves to "<%= params[:zipcode] %>"
+<!-- <form action="< % = zipsearch_path % >"> -->
+<!-- There is something wrong with my button...  I get a "Routing Error
+
+No route matches {:controller=>"sites", :action=>"zipsearch"}
+Try running rake routes for more information on available routes." -->
+<!-- <form action="< % = new_site_path % >">
+	<input type="text" name="zipcode">
 	<input type="submit" value="Search Zipcode">
-</form>
+</form> -->
+
+
 <form action="<%= new_site_path %>">
 	<input type="submit" value="New">
 </form>
+
+Controller could generate the URL...
+sites/zipsearch/somenumberasastring...  could be added to applicationcontroller as a method...  needs to be a method that returns the path
+
+<!-- <form action="<%= sites_zipsearch_path %>" method="POST"> -->
+<form action="/sites/zipsearch" method="POST">
+	<input type="hidden" name="_method" value="POST">
+	<input type="text" name="zipcode">
+	<input type="submit" value="Zipcode Search">
+</form>
+
 <form action="<%= destroy_user_session_path %>" method="POST">
 	<input type="hidden" name="_method" value="DELETE">
 	<input type="submit" value="Log out">
 </form>
+
 
 <br>
 <table id="myTable" class="tablesorter table-hover table">
@@ -19,6 +39,7 @@
 			<th class="col-sm-1">Cost</th>
 			<th class="col-sm-2">Name</th>
 			<th class="col-sm-2">Address</th>
+			<th class="col-sm-2">Zip</th>
 			<th class="col-sm-1">Rating</th>
 			<th class="col-sm-3">Reviews</th>
 		</tr>
@@ -30,17 +51,20 @@
 				<td><%= site.cost %></td>
 				<td><%= site.name %></td>
 				<td><%= site.address %></td>
-				<!-- <td><%= site.city %></td> -->
-				<!-- <td>< % = site.zipcode % ></td> -->
+				<!-- <td>< % = site.city % ></td> -->
+				<td><%= site.zipcode %></td>
 				<td>FIX#</td>
 				<td>
-					<!-- <a href="<%=site_path(site)%>">FIXME</a> -->
-<% if user_signed_in? %> 
-<form action="/reviews/WriteAGroovyReview">
+					<!-- <a href="< % = site_path(site) % >">FIXME</a> -->
+
+<a href="<%= new_site_review_path(site) %>">Write Review</a>
+<!--
+< % if user_signed_in? % > 
+<form action="< % = new_site_review_path % >"> 
 	<input type="submit" value="Write Review">
 </form>
-<% end %>
-
+< % end % >
+-->
 
 					(<%= site.reviews %>)
 				</td>
