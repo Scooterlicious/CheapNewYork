@@ -49,6 +49,17 @@
 							<% weighted_rating = sum/site.reviews.size %>
 							<% (weighted_rating.to_i).times do |x| %>&#9733;<% end %>
 							<% if ((weighted_rating - weighted_rating.floor) > 0) %>&frac12;<%end %>
+
+
+
+<% if ((weighted_rating % 1) > 0) %>&frac12;<%end %>
+
+
+
+
+
+
+
 						</td>
 					<% else %>
 						<td>Unrated</td>
