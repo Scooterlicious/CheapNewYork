@@ -13,7 +13,6 @@ class YelpApi
 			@reviews = []
 			@url = url
 			@image_url = image_url
-#binding.pry
 		end
 	end
 
@@ -54,10 +53,6 @@ class YelpApi
 				city = business["city"]
 				zip = business["zip"]
 				url = business["url"]
-#binding.pry
-#business["rating_img_url"]
-#business["rating_img_url_small"]
-
 
 				image_url = business["rating_img_url_small"]
 
@@ -74,14 +69,9 @@ class YelpApi
 						review["text_excerpt"],
 						review["rating_img_url_small"]]
 						)
-binding.pry
 				end
-				rating = rating_sum / review_array.size
-				siteclassobject.rating = rating
-#binding.pry
 				site_array << siteclassobject
 			end
-#binding.pry			
 		return site_array
 
 	end #	def self.searchZip(inZip)

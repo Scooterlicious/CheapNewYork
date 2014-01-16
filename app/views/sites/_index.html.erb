@@ -11,11 +11,11 @@
 	<thead>
 		<tr>
 			<th class="col-sm-1">Cost</th>
-			<th class="col-sm-1">Name</th>
-			<th class="col-sm-1">Address</th>
+			<th class="col-sm-2">Name</th>
+			<th class="col-sm-2">Address</th>
 			<th class="col-sm-1">Zip</th>
 			<th class="col-sm-1">Rating</th>
-			<th class="col-sm-5">Reviews</th>
+			<th class="col-sm-10">Reviews</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -25,8 +25,8 @@
 				<td><%= site.name %></td>
 				<td><%= site.address %></td>
 				<td><%= site.zipcode %></td>
- 				<% if site.respond_to?(:rating) %>
-					<td><%= site.rating %></td>
+ 				<% if site.respond_to?(:image_url) %>
+					<td><img src="<%= site.image_url %>"></td>
 				<% else %>
 					<% sum = 0 %>
 					<% site.reviews.each do |review| %>

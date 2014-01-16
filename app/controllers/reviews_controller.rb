@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
-	before_filter :authenticate_user!, :only => [:new] #, except: [:index] 
+#	before_filter :authenticate_user!, :only => [:new] #, except: [:index] 
+	before_filter :authenticate_user!, :except => [:show] #, except: [:index] 
 	
 	def new
 		@site = Site.find(params[:site_id])
