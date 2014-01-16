@@ -9,7 +9,7 @@
 		</tr>
 	</thead>
 	<tbody>
-			<tr class="site_BLANKSTUFF_FIXME_TODO">
+			<tr>
 				<td><%= @site.cost %></td>
 				<td><%= @site.name %></td>
 				<td><%= @site.address %></td>
@@ -23,8 +23,16 @@
 </table>
 
 <form action="<%= site_reviews_path %>" method="post">
-	<input type="text" name="rating" placeholder="Rating">
-	<input type="text" name="written_text" placeholder="What did you think?">
+	<select class="display-block" name="rating" >
+		<option value="1">1 Star</option>
+		 <% 1.5.step(5,0.5) do |i| %>
+			 <option value ="<%= i %>"><%= i %> Stars</option>
+		<% end %>
+	</select>
+	<textarea name="written_text" rows="4" cols="50" placeholder="What did you think?"></textarea>
+
 	<%= token_tag :authenticity_token %>
-	<button id="submit">Create Review</button>
+	<button  class="display-block" id="submit">Create Review</button>
 </form>
+
+

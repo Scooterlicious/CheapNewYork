@@ -11,11 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140116155428) do
+ActiveRecord::Schema.define(:version => 20140116205254) do
 
   create_table "reviews", :force => true do |t|
-    t.integer  "rating"
-    t.string   "written_text"
+    t.decimal  "rating"
+    t.text     "written_text"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.integer  "site_id"

@@ -12,3 +12,17 @@
  *= require_self
  *= require_tree .
  */
+
+/* GLOBAL STUFF GOES HERE */
+ .display-block {
+ 	display: block;
+ }
+
+body {
+	margin: 10px;
+}
+
+
+.ScooterFooter {
+	color: rgba(0,0,0,0,0); display: block; text-align: center; font-size: 10px; font-weight: lighter;padding: 5px;
+}

@@ -1,10 +1,22 @@
-<h1>Cheap New York -- Site Listing for <%= session[:zipcode] %></h1>
+<h1 style="text-align:center">
+	<span style="font-family: 'Allan', cursive;font-size:300%">Cheap</span> New York</h1>
 
-<form action="/sites/zipsearch" method="POST">
-	<input type="hidden" name="_method" value="POST">
-	<input type="text" name="zipcode">
-	<%= token_tag :authenticity_token %>
-	<input type="submit" value="Zipcode Search">
+<br>
+<form action="/sites/zipsearch" class="form-horizontal container" role="form"  method="POST">
+
+<div class="form-group col-xl-4">
+	<div class="col-sm-8">
+		<input type="hidden" class="form-control" name="_method" value="POST">
+	    <label class="control-label" for="language">Zipcode search</label>
+		<input type="text" class="form-control"  name="zipcode">
+		<%= token_tag :authenticity_token %>
+		<div>
+			<input type="submit" class="btn" value="Submit">
+		</div>
+	</div>
+</div>
+
+
 </form>
 
 <br>
@@ -34,7 +46,12 @@
 						<% sum += review.rating %>
 					<% end %>
 					<% unless(sum == 0) %>
-						<td><%= sum/site.reviews.size %></td>
+						<td>
+							<% weighted_rating = sum/site.reviews.size %>
+						
+							<% (weighted_rating.to_i).times do |x| %>&#9733;<% end %>
+							<% if ((weighted_rating - weighted_rating.floor) > 0) %>&frac12;<%end %>
+						</td>
 					<% else %>
 						<td>Unrated</td>
 					<% end %>
@@ -44,7 +61,11 @@
 						<% site.reviews.each_with_index do |review, index| %>
 							<% if review.respond_to?(:rating) %>
 								<li>
-									<% (review.rating).times do |x| %>&#9733;<% end %>
+									<% (review.rating.to_i).times do |x| %>&#9733;<% end %>
+
+									<% if ((review.rating - review.rating.floor) > 0) %>
+									&frac12;
+									<%end %>
 									<%= review.written_text %> 
 									<%= link_to 'EDIT', edit_site_review_path(site, review), :method => :get %> 
 									<%= link_to 'DELETE', site_review_path(site, review), :method => :delete %>
@@ -59,7 +80,7 @@
 					</ul>
 
 					<% if site.is_a?(YelpApi::YelpSite) == true %>
-<!-- < % binding.pry  % > -->
+
 						<a href="<%= site.url %>" target="_YelpWindow">Site on Yelp</a>
 					<% else %>
 						<a href="<%= new_site_review_path(site) %>">
