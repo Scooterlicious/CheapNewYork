@@ -1,22 +1,21 @@
 <h1 style="text-align:center">
-	<span style="font-family: 'Allan', cursive;font-size:300%">Cheap</span> New York</h1>
+	<span style="font-family: 'Allan', cursive;font-size:300%">Cheap
+	</span> New York
+</h1>
 
 <br>
 <form action="/sites/zipsearch" class="form-horizontal container" role="form"  method="POST">
-
-<div class="form-group col-xl-4">
-	<div class="col-sm-8">
-		<input type="hidden" class="form-control" name="_method" value="POST">
-	    <label class="control-label" for="language">Zipcode search</label>
-		<input type="text" class="form-control"  name="zipcode">
-		<%= token_tag :authenticity_token %>
-		<div>
-			<input type="submit" class="btn" value="Submit">
+	<div class="form-group col-xl-4">
+		<div class="col-sm-8">
+			<input type="hidden" class="form-control" name="_method" value="POST">
+		    <label class="control-label" for="language">Zipcode search</label>
+			<input type="text" class="form-control"  name="zipcode">
+			<%= token_tag :authenticity_token %>
+			<div>
+				<input type="submit" class="btn" value="Submit">
+			</div>
 		</div>
 	</div>
-</div>
-
-
 </form>
 
 <br>
@@ -48,7 +47,6 @@
 					<% unless(sum == 0) %>
 						<td>
 							<% weighted_rating = sum/site.reviews.size %>
-						
 							<% (weighted_rating.to_i).times do |x| %>&#9733;<% end %>
 							<% if ((weighted_rating - weighted_rating.floor) > 0) %>&frac12;<%end %>
 						</td>
