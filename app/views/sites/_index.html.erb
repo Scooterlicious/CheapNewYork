@@ -1,0 +1,42 @@
+<h1>Cheap New York -- Site Listing</h1>
+
+<form action="/sites/zipsearch" method="POST">
+	<input type="hidden" name="_method" value="POST">
+	<input type="text" name="zipcode">
+	<input type="submit" value="Zipcode Filter">
+</form>
+
+<br>
+<table id="myTable" class="tablesorter table-hover table">
+	<thead>
+		<tr>
+			<th class="col-sm-1">Cost</th>
+			<th class="col-sm-1">Name</th>
+			<th class="col-sm-1">Address</th>
+			<th class="col-sm-1">Zip</th>
+			<th class="col-sm-1">Rating</th>
+			<th class="col-sm-5">Reviews</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @sites.each do |site|  %>
+			<tr>
+				<td><%= site.cost %></td>
+				<td><%= site.name %></td>
+				<td><%= site.address %></td>
+				<td><%= site.zipcode %></td>
+				<td>FIX#</td>
+				<td>
+					<a href="<%= new_site_review_path(site) %>">Write Review</a>
+<!-- 					(<%= site.reviews %>) -->
+					<ul>
+					<% site.reviews.each do |review| %>
+						<li>[<%= review.rating %>]
+							<%= review.written_text %></li>
+					<% end %>
+				</ul>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
