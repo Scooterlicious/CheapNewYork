@@ -3,6 +3,7 @@
 <form action="/sites/zipsearch" method="POST">
 	<input type="hidden" name="_method" value="POST">
 	<input type="text" name="zipcode">
+	<%= token_tag :authenticity_token %>
 	<input type="submit" value="Zipcode Search">
 </form>
 
