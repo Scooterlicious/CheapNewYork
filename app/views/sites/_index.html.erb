@@ -49,54 +49,46 @@
 							<% weighted_rating = sum/site.reviews.size %>
 							<% (weighted_rating.to_i).times do |x| %>&#9733;<% end %>
 							<% if ((weighted_rating - weighted_rating.floor) > 0) %>&frac12;<%end %>
-
-
-
-<% if ((weighted_rating.to_f % 1.0) > 0) %>HALF &frac12;<%end %>
-
-
-
-
 						</td>
 					<% else %>
 						<td>Unrated</td>
 					<% end %>
 				<% end %>
- 				<td>
+				<td>
+					<% site.reviews.each_with_index do |review, index| %>
 					<ul style="list-style: none; padding-left:0;">
-						<% site.reviews.each_with_index do |review, index| %>
-							<% if review.respond_to?(:rating) %>
-								<li>
-									<% (review.rating.to_i).times do |x| %>&#9733;<% end %>
+						<% if review.respond_to?(:rating) %>
+						<li>
+							<% (review.rating.to_i).times do |x| %>&#9733;<% end %>
 
-									<% if ((review.rating - review.rating.floor) > 0) %>
-									&frac12;
-									<%end %>
-									<%= review.written_text %> 
-									<%= link_to 'EDIT', edit_site_review_path(site, review), :method => :get %> 
-									<%= link_to 'DELETE', site_review_path(site, review), :method => :delete %>
-								</li>	
-							<% else %>
-								<li>
-									<img src="<%= review[2] %>"><%= review[1] %>
-								</li>
-								<hr>
-							<% end %>
+							<% if ((review.rating - review.rating.floor) > 0) %>
+							&frac12;
+							<%end %>
+							<%= review.written_text %> 
+							<%= link_to 'EDIT', edit_site_review_path(site, review), :method => :get %> 
+							<%= link_to 'DELETE', site_review_path(site, review), :method => :delete %>
+						</li>	
+						<% else %>
+						<li>
+							<img src="<%= review[2] %>"><%= review[1] %>
+						</li>
+						<hr>
 						<% end %>
 					</ul>
+					<% end %>
 
 					<% if site.is_a?(YelpApi::YelpSite) == true %>
 
-						<a href="<%= site.url %>" target="_YelpWindow">Site on Yelp</a>
+					<a href="<%= site.url %>" target="_YelpWindow">Site on Yelp</a>
 					<% else %>
-						<a href="<%= new_site_review_path(site) %>">
-							<% if site.reviews.size == 0 %>
-								Write the first review!
-							<% else %>
-								Write a Review
-							<% end %>
-						</a>
-
+					<a href="<%= new_site_review_path(site) %>">
+						<% if site.reviews.size == 0 %>
+						Write the first review!
+						<% else %>
+						Write a Review
+						<% end %>
+					</a>
+					
 					<% end %>
 
 				</td>
