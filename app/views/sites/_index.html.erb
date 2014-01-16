@@ -39,19 +39,26 @@
 					<% end %>
 				<% end %>
  				<td>
-					<ul>
+					<ul style="list-style: none; padding-left:0;">
 						<% site.reviews.each_with_index do |review, index| %>
 							<% if review.respond_to?(:rating) %>
-								<li>[<%= review.rating %>]
-								<%= review.written_text %> <%= link_to 'EDIT', edit_site_review_path(site, review), :method => :get %> <%= link_to 'DELETE', site_review_path(site, review), :method => :delete %></li>								
+								<li>
+									<% (review.rating).times do |x| %>&#9733;<% end %>
+									<%= review.written_text %> 
+									<%= link_to 'EDIT', edit_site_review_path(site, review), :method => :get %> 
+									<%= link_to 'DELETE', site_review_path(site, review), :method => :delete %>
+								</li>	
 							<% else %>
-								<li>[<%= review[0] %>]
-								<%= review[1] %></li>
+								<li>
+									<img src="<%= review[2] %>"><%= review[1] %>
+								</li>
+								<hr>
 							<% end %>
 						<% end %>
 					</ul>
 
 					<% if site.is_a?(YelpApi::YelpSite) == true %>
+<!-- < % binding.pry  % > -->
 						<a href="<%= site.url %>" target="_YelpWindow">Site on Yelp</a>
 					<% else %>
 						<a href="<%= new_site_review_path(site) %>">

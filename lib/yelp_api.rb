@@ -1,8 +1,8 @@
 class YelpApi
 	class YelpSite 
-		attr_accessor :cost, :name, :address, :city, :zipcode, :rating, :reviews, :yelp, :url
+		attr_accessor :cost, :name, :address, :city, :zipcode, :rating, :reviews, :yelp, :url, :image_url
 
-		def initialize(cost, name, address, city, zip, rating, url)
+		def initialize(cost, name, address, city, zip, rating, url, image_url)
 			@cost = cost
 			@name = name
 			@address = address
@@ -12,6 +12,7 @@ class YelpApi
 			@yelp = true
 			@reviews = []
 			@url = url
+			@image_url = image_url
 #binding.pry
 		end
 	end
@@ -40,7 +41,7 @@ class YelpApi
 	             :radius => 1,
 	             :zipcode => inZip,
 	             :term => 'restaurant',
-	             :business_count => 5)
+	             :business_count => 2)
 
 			site_array = []
 
@@ -53,20 +54,27 @@ class YelpApi
 				city = business["city"]
 				zip = business["zip"]
 				url = business["url"]
+#binding.pry
+#business["rating_img_url"]
+#business["rating_img_url_small"]
+
+
+				image_url = business["rating_img_url_small"]
 
 				review_array = business["reviews"]
 				rating_sum = 0
 
 				siteclassobject = YelpSite.new(
 					cost, name, address, city, 
-					zip, 0, url)
-#binding.pry
+					zip, 0, url, image_url)
 				review_array.each do |review|
 					rating_sum += review["rating"]
 					siteclassobject.reviews.push(
 						[review["rating"], 
-						review["text_excerpt"]]
+						review["text_excerpt"],
+						review["rating_img_url_small"]]
 						)
+binding.pry
 				end
 				rating = rating_sum / review_array.size
 				siteclassobject.rating = rating

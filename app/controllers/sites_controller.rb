@@ -15,7 +15,7 @@ class SitesController < ApplicationController
 		@sites = Site.all.take(4)
 		@sites |= YelpApi.searchZip(params[:zipcode])
 		session[:zipcode] = params[:zipcode]
-binding.pry
+#binding.pry
 	end
 
 	def show
