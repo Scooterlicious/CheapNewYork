@@ -1,13 +1,9 @@
 require 'yelp_api' # in the lib folder
 
-class SitesController < ApplicationController
-	#before_filter works with Devise to allow only LOGGED IN USERS
-	#to do stuff other than pull up an index
-	
-	#before_filter :authenticate_user!, except: [:index] 
-	
+class SitesController < ApplicationController	
 	def index
-		@sites = Site.all.take(2)
+		@sites = Site.all.take(4)
+#binding.pry
 #		@sites |= YelpApi.searchZip(10010) 
 	end
 
@@ -16,8 +12,10 @@ class SitesController < ApplicationController
 	end
 
 	def zipsearch
-		@sites = Site.all.take(2)
+		@sites = Site.all.take(4)
 		@sites |= YelpApi.searchZip(params[:zipcode])
+		session[:zipcode] = params[:zipcode]
+binding.pry
 	end
 
 	def show

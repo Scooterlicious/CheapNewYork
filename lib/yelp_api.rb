@@ -1,15 +1,18 @@
 class YelpApi
-	class Site 
-		attr_accessor :cost, :name, :address, :city, :zipcode, :rating, :reviews
+	class YelpSite 
+		attr_accessor :cost, :name, :address, :city, :zipcode, :rating, :reviews, :yelp, :url
 
-		def initialize(cost, name, address, city, zip, rating)
+		def initialize(cost, name, address, city, zip, rating, url)
 			@cost = cost
 			@name = name
 			@address = address
 			@city = city
 			@zipcode = zip
 			@rating = rating
+			@yelp = true
 			@reviews = []
+			@url = url
+#binding.pry
 		end
 	end
 
@@ -30,19 +33,14 @@ class YelpApi
 			 include Yelp::V1::Review::Request
 			 # perform an address/location-based search for cream puffs nearby
 
-#inZip = '10010'
-if inZip == nil
-	inZip = 10000
-end
 			 request = Location.new(
 	             # :address => '650 Mission St',
-	             :city => 'New York',
-	             :state => 'NY',
+	             #:city => 'New York',
+	             #:state => 'NY',
 	             :radius => 1,
 	             :zipcode => inZip,
-	             #:zipcode => 10031,
 	             :term => 'restaurant',
-	             :business_count => rand(1..4))
+	             :business_count => 5)
 
 			site_array = []
 
@@ -50,15 +48,19 @@ end
 			business_array = response["businesses"]
 			business_array.each do |business|
 				cost = "$"
-				name = business["name"] + inZip
+				name = business["name"]
 				address = business["address1"]
 				city = business["city"]
 				zip = business["zip"]
+				url = business["url"]
 
 				review_array = business["reviews"]
 				rating_sum = 0
 
-				siteclassobject = Site.new(cost, name, address, city, zip, 0)
+				siteclassobject = YelpSite.new(
+					cost, name, address, city, 
+					zip, 0, url)
+#binding.pry
 				review_array.each do |review|
 					rating_sum += review["rating"]
 					siteclassobject.reviews.push(
@@ -68,12 +70,10 @@ end
 				end
 				rating = rating_sum / review_array.size
 				siteclassobject.rating = rating
+#binding.pry
 				site_array << siteclassobject
 			end
-			#binding.pry
-#		end #def yelp_test_query
-#p "site_array.size: #{site_array.size}"
-#site_array = [["blah", "blah"],["blah", "blah"]]
+#binding.pry			
 		return site_array
 
 	end #	def self.searchZip(inZip)

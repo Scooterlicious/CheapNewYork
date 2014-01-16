@@ -1,9 +1,9 @@
-<h1>Cheap New York -- Site Listing</h1>
+<h1>Cheap New York -- Site Listing for <%= session[:zipcode] %></h1>
 
 <form action="/sites/zipsearch" method="POST">
 	<input type="hidden" name="_method" value="POST">
 	<input type="text" name="zipcode">
-	<input type="submit" value="Zipcode Filter">
+	<input type="submit" value="Zipcode Search">
 </form>
 
 <br>
@@ -25,16 +25,45 @@
 				<td><%= site.name %></td>
 				<td><%= site.address %></td>
 				<td><%= site.zipcode %></td>
-				<td>FIX#</td>
-				<td>
-					<a href="<%= new_site_review_path(site) %>">Write Review</a>
-<!-- 					(<%= site.reviews %>) -->
-					<ul>
+ 				<% if site.respond_to?(:rating) %>
+					<td><%= site.rating %></td>
+				<% else %>
+					<% sum = 0 %>
 					<% site.reviews.each do |review| %>
-						<li>[<%= review.rating %>]
-							<%= review.written_text %></li>
+						<% sum += review.rating %>
 					<% end %>
-				</ul>
+					<% unless(sum == 0) %>
+						<td><%= sum/site.reviews.size %></td>
+					<% else %>
+						<td>Unrated</td>
+					<% end %>
+				<% end %>
+ 				<td>
+					<ul>
+						<% site.reviews.each_with_index do |review, index| %>
+							<% if review.respond_to?(:rating) %>
+								<li>[<%= review.rating %>]
+								<%= review.written_text %> <%= link_to 'EDIT', edit_site_review_path(site, review), :method => :get %> <%= link_to 'DELETE', site_review_path(site, review), :method => :delete %></li>								
+							<% else %>
+								<li>[<%= review[0] %>]
+								<%= review[1] %></li>
+							<% end %>
+						<% end %>
+					</ul>
+
+					<% if site.is_a?(YelpApi::YelpSite) == true %>
+						<a href="<%= site.url %>" target="_YelpWindow">Site on Yelp</a>
+					<% else %>
+						<a href="<%= new_site_review_path(site) %>">
+							<% if site.reviews.size == 0 %>
+								Write the first review!
+							<% else %>
+								Write a Review
+							<% end %>
+						</a>
+
+					<% end %>
+
 				</td>
 			</tr>
 		<% end %>
