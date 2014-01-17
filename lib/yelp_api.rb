@@ -39,7 +39,7 @@ class YelpApi
 	             :zipcode => inZip,
 	             :term => 'restaurant',
 	             :business_count => 4)
-binding.pry
+			 
 			site_array = []
 
 			response = client.search(request)

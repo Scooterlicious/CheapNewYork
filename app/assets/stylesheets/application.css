@@ -22,6 +22,16 @@ body {
 	margin: 10px;
 }
 
+.CheapNewYorkLogo {
+	font-family: 'Allan', cursive;
+	font-size:300%;
+}
+
+.CheapNewYorkLogoT {
+	font-family: 'Allan', cursive;
+	font-size:200%;
+}
+
 
 .ScooterFooter {
 	color: black;  
