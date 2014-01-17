@@ -11,7 +11,6 @@ class ReviewsController < ApplicationController
 		@review = Review.find(params[:id]) 
 	end
 
-
 	def create
 		@review = Review.create()
 		@review.rating = params[:rating]
@@ -20,7 +19,9 @@ class ReviewsController < ApplicationController
 		@review.user_id = current_user[:id] #session[:current_user_id]
 		@review.save
 #binding.pry
-		redirect_to site_review_path(params[:site_id], @review)
+#		redirect_to site_review_path(params[:site_id], @review)
+		redirect_to site_path(params[:site_id])
+
 	end
 
 	def show
