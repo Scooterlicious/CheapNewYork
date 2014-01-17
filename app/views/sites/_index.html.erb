@@ -1,6 +1,6 @@
 <h1 style="text-align:center">
 	<span style="font-family: 'Allan', cursive;font-size:300%">Cheap
-	</span> New York
+	</span> New York <span style="font-family: 'Allan', cursive;font-size:200%">!</span>
 </h1>
 
 <br>
@@ -35,7 +35,11 @@
 			<tr>
 				<td><%= site.cost %></td>
 				<td><%= site.name %></td>
-				<td><%= site.address %></td>
+				<td>
+					<a href="http://maps.google.com/?q=<%=site.address%>,<%=site.zipcode%>" target="_GoogleMap">
+						<%= site.address %>
+					</a>
+				</td>
 				<td><%= site.zipcode %></td>
  				<% if site.respond_to?(:image_url) %>
 					<td><img src="<%= site.image_url %>"></td>

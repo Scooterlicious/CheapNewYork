@@ -24,10 +24,10 @@ body {
 
 
 .ScooterFooter {
-	color: rgba(0,0,0,0); 
+	color: black;  
 	display: block; 
 	text-align: center; 
 	font-size: 10px; 
-	font-weight: 
-	lighter;padding: 5px;
+	font-weight: lighter;
+	padding: 5px;
 }

@@ -16,8 +16,6 @@ class YelpApi
 		end
 	end
 
-
-
 	def self.searchZip(inZip)
 		#def yelp_test_query
 			Yelp.configure(
@@ -40,8 +38,8 @@ class YelpApi
 	             :radius => 1,
 	             :zipcode => inZip,
 	             :term => 'restaurant',
-	             :business_count => 2)
-
+	             :business_count => 4)
+binding.pry
 			site_array = []
 
 			response = client.search(request)
