@@ -1,4 +1,4 @@
-<h1>Edit your review</h1>
+<h1>Edit review</h1>
 
 <table id="myTable" class="table">
 	<thead>
@@ -14,42 +14,32 @@
 				<td><%= @site.name %></td>
 				<td><%= @site.address %></td>
 			</tr>
+
 			<tr>
 				<td></td>
 				<td></td>
-				<td></td>
+				<td></td>		
 			</tr>
 	</tbody>
 </table>
 
-<form action="<%= site_review_path(@site, @review) %>" method="post">
+<form action="<%= site_review_path(@site, @review) %>" method="post" class="form-horizontal container" role="form" >
 	<input name="_method" type="hidden" value="PUT" />
-	<select class="display-block" name="rating" >
+		<label class="control-label" for="language">Rating</label>
+	<select class="form-control" name="rating" >
 		<option value="1">1 Star</option>
-		 <% 1.5.step(5,0.5) do |i| %>
-			 <option value ="<%= i %>"
-<%if (i == @review.rating)%>
-<%=selected="selected"%>
-<%end %>
-
-			 	><%= i %> Stars</option>
+		<% 1.5.step(5,0.5) do |i| %>
+		<option value ="<%= i %>"
+			<%if (i == @review.rating)%>
+			<%=selected="selected"%>
+			<%end %>
+			><%= i %> Stars
+		</option>
 		<% end %>
 	</select>
-	<textarea name="written_text" rows="4" cols="50"><%= @review.written_text %></textarea>
+		<label class="control-label" for="language">Review text</label>
 
+	<textarea name="written_text" class="form-control" rows="4" cols="50"><%= @review.written_text %></textarea>
 	<%= token_tag :authenticity_token %>
-	<%= button_to 'Save Changes', site_review_path(@site, @review), :method => :put %>
-</form>
-
-
-
-
-
-
-<form action="< % = site_review_path(@site, @review) % >" method="post">
-	<input name="_method" type="hidden" value="PUT" />
-	<input type="text" name="rating" value="<%= @review.rating %>">
-	<input type="text" name="written_text" >
-	<%= token_tag :authenticity_token %>
-	<%= button_to 'Save Changes', site_review_path(@site, @review), :method => :put %>
-</form>
+	<%= button_to 'Save Changes', site_review_path(@site, @review), :method => :put, :class => "form-control"%>
+	</form>

@@ -4,21 +4,21 @@
 </h1>
 
 <br>
-<form action="/sites/zipsearch" class="form-horizontal container" role="form"  method="POST">
-	<div class="form-group col-xl-4">
-		<div class="col-sm-8">
+<form action="<%= sites_zipsearch_path %>" class="form-horizontal container" role="form"  method="POST">
+	<div class="form-group col-xl-3">
+		<div class="col-sm-3">
 			<input type="hidden" class="form-control" name="_method" value="POST">
 		    <label class="control-label" for="language">Zipcode search</label>
 			<input type="text" class="form-control"  name="zipcode">
 			<%= token_tag :authenticity_token %>
 			<div>
-				<input type="submit" class="btn" value="Submit">
+				<input type="submit" class="form-control" value="Submit">
 			</div>
 		</div>
 	</div>
 </form>
 
-<br>
+<br><br>
 <table id="myTable" class="tablesorter table-hover table">
 	<thead>
 		<tr>
@@ -88,7 +88,7 @@
 						Write a Review
 						<% end %>
 					</a>
-					
+
 					<% end %>
 
 				</td>
