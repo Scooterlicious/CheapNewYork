@@ -1,0 +1,41 @@
+<h1>Edit your review</h1>
+
+<table id="myTable" class="table">
+	<thead>
+		<tr>
+			<th class="col-sm-1">Cost</th>
+			<th class="col-sm-2">Name</th>
+			<th class="col-sm-2">Address</th>
+		</tr>
+	</thead>
+	<tbody>
+			<tr class="site_BLANKSTUFF_FIXME_TODO">
+				<td><%= @site.cost %></td>
+				<td><%= @site.name %></td>
+				<td><%= @site.address %></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+	</tbody>
+</table>
+
+<form action="<%= site_review_path(@site, @review) %>" method="post">
+	<input name="_method" type="hidden" value="PUT" />
+	<select class="display-block" name="rating" >
+		<option value="1">1 Star</option>
+		<% 1.5.step(5,0.5) do |i| %>
+		<option value ="<%= i %>"
+			<%if (i == @review.rating)%>
+			<%=selected="selected"%>
+			<%end %>
+			><%= i %> Stars
+		</option>
+		<% end %>
+	</select>
+	<textarea name="written_text" rows="4" cols="50"><%= @review.written_text %></textarea>
+	<%= token_tag :authenticity_token %>
+	<%= button_to 'Save Changes', site_review_path(@site, @review), :method => :put %>
+	</form>
