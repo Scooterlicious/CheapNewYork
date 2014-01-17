@@ -7,6 +7,8 @@ CheapNewYork::Application.routes.draw do
 
   post '/sites/zipsearch', to: 'sites#zipsearch', as: 'sites_zipsearch'
 
+  get '/welcome', to: 'sites#splash'
+
   root :to => 'sites#index'
 
     # The priority is based upon order of creation:

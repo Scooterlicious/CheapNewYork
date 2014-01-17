@@ -22,17 +22,20 @@
 	</tbody>
 </table>
 
-<form action="<%= site_reviews_path %>" method="post">
-	<select class="display-block" name="rating" >
+<form action="<%= site_reviews_path %>" method="post" class="form-horizontal container" role="form">
+	<label class="control-label" for="language">Rating</label>
+
+	<select class="form-control" name="rating" >
 		<option value="1">1 Star</option>
-		 <% 1.5.step(5,0.5) do |i| %>
-			 <option value ="<%= i %>"><%= i %> Stars</option>
+		<% 1.5.step(5,0.5) do |i| %>
+			<option value ="<%= i %>"><%= i %> Stars</option>
 		<% end %>
 	</select>
-	<textarea name="written_text" rows="4" cols="50" placeholder="What did you think?"></textarea>
+	<label class="control-label" for="language">Review text</label>
+	<textarea name="written_text" class="form-control" rows="4" cols="50" placeholder="What did you think?"></textarea>
 
 	<%= token_tag :authenticity_token %>
-	<button  class="display-block" id="submit">Create Review</button>
+	<button class="form-control" id="submit">Create Review</button>
 </form>
 
 

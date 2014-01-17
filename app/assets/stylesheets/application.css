@@ -18,8 +18,15 @@
  	display: block;
  }
 
+.SpashImage {
+	margin-right: auto;
+	margin-left: auto;
+	display: block;
+} 
+
 body {
 	margin: 10px;
+	background-color: #F0F0F6;
 }
 
 .CheapNewYorkLogo {
