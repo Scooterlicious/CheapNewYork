@@ -38,7 +38,8 @@ class YelpApi
 	             :radius => 1,
 	             :zipcode => inZip,
 	             :term => 'restaurant',
-	             :business_count => 4)
+	             :business_count => 4,
+	             :compress_response => false)
 			 
 			site_array = []
 
